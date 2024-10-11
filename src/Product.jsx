@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack'
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
-import Box from '@mui/material/Box';
+import { Leva, useControls } from "leva";
 
 const ProductPage = () => {
   const product = {
@@ -22,6 +22,22 @@ const ProductPage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const { intensity, color, focusLight } = useControls({
+    intensity: {
+      value: 1,
+      min: 0,
+      max: 3,
+      step: 0.05
+    },
+    color: "#fff",
+    focusLight: {
+      value: 3,
+      min: 2,
+      max: 4,
+      step: 0.05
+    },
+  });
+
   return (
     <div className="product-page">
       <div className="product-part">
@@ -29,8 +45,10 @@ const ProductPage = () => {
           <IconButton aria-label="expand" className='expand-button' onClick={handleOpen}>
             <AspectRatioIcon />  
           </IconButton>
+          <Leva titleBar={{ title: "Ambient Light" }} className='leva' hidden/>
           <Canvas>
-              <ambientLight />
+              <ambientLight intensity={1}/>
+              <pointLight position={[0, 0.8, 1]} intensity={4} />
               <OrbitControls />
               <Suspense fallback={null}>
                   <Watch/>
@@ -65,8 +83,10 @@ const ProductPage = () => {
         aria-describedby="modal-modal-description"
       >
           <div className='product-model-container-full'>
+            <Leva titleBar={{ title: "Light" }} className='leva'/>
             <Canvas>
-                <ambientLight />
+                <ambientLight intensity={intensity} color={color}/>
+                <pointLight position={[0, 0.8, 1]} intensity={focusLight} />
                 <OrbitControls />
                 <Suspense fallback={null}>
                     <Watch/>
