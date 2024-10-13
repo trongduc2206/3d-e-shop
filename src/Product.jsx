@@ -1,22 +1,37 @@
 import { Suspense, useState } from 'react';
 import './Product.css'; // Make sure this path is correct based on your project structure
 import { Canvas } from '@react-three/fiber'
-import { ContactShadows, OrbitControls } from '@react-three/drei'
+import { ContactShadows, Environment, OrbitControls } from '@react-three/drei'
 import ReviewCard from './ReviewCard';
-import Watch from '../public/Watch'
+import Watch from '../public/models/watch/Watch'
+import Necklace from '../public/models/necklace/Necklace'
+import Ring from '../public/models/ring/Ring'
 import Stack from '@mui/material/Stack'
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
 import AspectRatioIcon from '@mui/icons-material/AspectRatio';
 import { Leva, useControls } from "leva";
+import { useParams } from "react-router-dom";
 
 const ProductPage = () => {
-  const product = {
-    name: 'Apple Watch Super Series 3928',
-    description: 'This is an awesome product that solves many problems. It is built with high-quality materials and offers exceptional performance.',
-    price: '$50',
-    // Add more product details as needed
-  };
+  const { productName } = useParams();
+  const products = [
+    {
+      name: 'Gothic Pendant Necklace',
+      description: 'This is a beautiful gothic pendant necklace. It is built with high-quality materials.',
+      price: '$100',
+    },
+    {
+      name: 'Ancient Ring',
+      description: 'This is a beautiful ring with agate jade.',
+      price: '$500',
+    },
+    {
+      name: 'Patek Phillip Watch',
+      description: 'This is a beautiful watch from Patek Phillip brand. It is built with high-quality materials and offers exceptional performance.',
+      price: '$200',
+    },
+  ]
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -49,18 +64,53 @@ const ProductPage = () => {
           <Canvas>
               <ambientLight intensity={1}/>
               <pointLight position={[0, 0.8, 1]} intensity={4} />
-              <OrbitControls />
+              <OrbitControls maxDistance={5.5} minDistance={1} />
               <Suspense fallback={null}>
-                  <Watch/>
+                  {
+                    productName === 'watch' ? (
+                      <Watch />
+                    )
+                    : (
+                      productName === 'ring' ? <Ring/> : <Necklace />
+                    )
+                  }
               </Suspense>
+              <Environment preset='sunset' />
               <ContactShadows position={[0, -2.5, 0]}/>
           </Canvas>
         </div>
         <div className="product-info">
-          <h1 className="product-name">{product.name}</h1>
+          <h1 className="product-name">
+            {
+              productName === 'watch' ? (
+                products[2].name
+              )
+              : (
+                productName === 'ring' ? products[1].name : products[0].name
+              )
+            }
+          </h1>
           <div className='discount'>Discount</div>
-          <h2 className="product-price">{product.price}</h2>
-          <p className="product-description">{product.description}</p>
+          <h2 className="product-price">
+          {
+              productName === 'watch' ? (
+                products[2].price
+              )
+              : (
+                productName === 'ring' ? products[1].price : products[0].price
+              )
+            }
+          </h2>
+          <p className="product-description">
+          {
+              productName === 'watch' ? (
+                products[2].description
+              )
+              : (
+                productName === 'ring' ? products[1].description : products[0].description
+              )
+            }
+          </p>
           <button className='add-button'>Add to cart</button>
           {/* Add more information like Add to Cart button, reviews, etc., if needed */}
         </div>
@@ -87,10 +137,18 @@ const ProductPage = () => {
             <Canvas>
                 <ambientLight intensity={intensity} color={color}/>
                 <pointLight position={[0, 0.8, 1]} intensity={focusLight} />
-                <OrbitControls />
+                <OrbitControls maxDistance={6.5} minDistance={1.5}/>
                 <Suspense fallback={null}>
-                    <Watch/>
+                {
+                    productName === 'watch' ? (
+                      <Watch />
+                    )
+                    : (
+                      productName === 'ring' ? <Ring/> : <Necklace />
+                    )
+                  }
                 </Suspense>
+                <Environment preset='sunset' />
                 <ContactShadows position={[0, -2.5, 0]}/>
             </Canvas>
           </div>

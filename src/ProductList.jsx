@@ -9,7 +9,13 @@ const ProductList = () => {
   const navigate = useNavigate();
 
   const onProductClick = () => {
-    navigate(paths.product.path);
+    if(categoryName === 'necklaces') {
+      navigate('/product/neckplace');
+    } else if (categoryName === 'rings') {
+      navigate('/product/ring');
+    } else if (categoryName === 'watches') {
+      navigate('/product/watch');
+    }
   };
 
   const allProducts = {

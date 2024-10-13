@@ -18,7 +18,7 @@ const pathnames = {
         },
     },
     product: {
-        path:'/product/:productId',
+        path:'/product/:productName',
         title: 'Product'
     }
 };
