@@ -4,7 +4,7 @@ import "./ProductList.css";
 import paths from './utilities/pathnames';
 
 const ProductList = () => {
-  const { categoryName } = useParams(); // Récupération du paramètre de catégorie
+  const { categoryName } = useParams();
   const [selectedFilter, setSelectedFilter] = useState("New");
   const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ const ProductList = () => {
     ],
   };
 
-  const products = allProducts[categoryName] || []; // Sélectionner les produits en fonction de la catégorie
+  const products = allProducts[categoryName] || [];
 
   const getSortedProducts = () => {
     let sortedProducts = [...products];
