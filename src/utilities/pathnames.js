@@ -4,8 +4,18 @@ const pathnames = {
         title: 'Main page'
     },
     category: {
-        path:'/category/:categoryId',
-        title: 'Category'
+        watches: {
+            path:'/category/watches',
+            title: 'All the watches'
+        },
+        necklaces: {
+            path:'/category/necklaces',
+            title: 'All the necklaces'
+        },
+        rings: {
+            path:'/category/rings',
+            title: 'All the rings'
+        },
     },
     product: {
         path:'/product/:productId',
