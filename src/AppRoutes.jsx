@@ -8,9 +8,8 @@ export function AppRoutes() {
   return (
     <Routes>
       <Route path={paths.home.path} element={<MainPage/>} />
-      <Route path={paths.category.path} element={<ProductList/>} />
+      <Route path="/category/:categoryName" element={<ProductList />} />
       <Route path={paths.product.path} element={<ProductPage />} />
     </Routes>
   );
 }
-

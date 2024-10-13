@@ -86,13 +86,13 @@ const Header = () => {
         <LogoLink to={paths.home.path}>LuxeGems</LogoLink>
 
         <MenuList>
-          <StyledListItem component={Link} to={paths.category.path}>
+          <StyledListItem component={Link} to="/category/necklaces">
             <StyledListItemText primary={<Typography variant="body1">Necklaces</Typography>} />
           </StyledListItem>
-          <StyledListItem component={Link} to={paths.category.path}>
+          <StyledListItem component={Link} to="/category/rings">
             <StyledListItemText primary={<Typography variant="body1">Rings</Typography>} />
           </StyledListItem>
-          <StyledListItem component={Link} to={paths.category.path}>
+          <StyledListItem component={Link} to="/category/watches">
             <StyledListItemText primary={<Typography variant="body1">Watches</Typography>} />
           </StyledListItem>
         </MenuList>
