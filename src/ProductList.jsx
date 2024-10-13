@@ -1,8 +1,14 @@
 import React, { useState } from "react";
 import "./ProductList.css";
+import { useNavigate } from "react-router-dom";
+import paths from './utilities/pathnames';
 
 const ProductList = () => {
   const [selectedFilter, setSelectedFilter] = useState("New");
+  const navigate = useNavigate();
+  const onProductClick = () => {
+    navigate(paths.product.path)
+  }
 
   const products = [
     { id: 1, name: "Product 1", price: 100, rating: 4, imgSrc: "../public/placeholder.jpg" },
@@ -77,7 +83,7 @@ const ProductList = () => {
 
       <div className="product-grid">
         {getSortedProducts().map((product) => (
-          <div className="product-card" key={product.id}>
+          <div className="product-card" key={product.id} onClick={onProductClick}>
             <img src={product.imgSrc} alt={product.name} className="product-image" />
             <div className="product-details">
               <p>{product.name}</p>

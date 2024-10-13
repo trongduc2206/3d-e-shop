@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 const MainPage = () => {
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
 
       {/* Welcome Section */}
       <Box
@@ -98,7 +98,7 @@ const MainPage = () => {
         </Container>
       </Box>
 
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
