@@ -1,7 +1,7 @@
 import { Suspense, useState } from 'react';
 import './Product.css'; // Make sure this path is correct based on your project structure
 import { Canvas } from '@react-three/fiber'
-import { ContactShadows, Environment, OrbitControls } from '@react-three/drei'
+import { ContactShadows, Environment, OrbitControls, Stage, AccumulativeShadows, RandomizedLight } from '@react-three/drei'
 import ReviewCard from './ReviewCard';
 import Watch from '../public/models/watch/Watch'
 import Necklace from '../public/models/necklace/Necklace'
@@ -37,7 +37,7 @@ const ProductPage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { intensity, color, focusLight } = useControls({
+  const { intensity, color, focusLight, background } = useControls({
     intensity: {
       value: 1,
       min: 0,
@@ -51,6 +51,7 @@ const ProductPage = () => {
       max: 4,
       step: 0.05
     },
+    background: "#fff",
   });
 
   return (
@@ -135,6 +136,7 @@ const ProductPage = () => {
           <div className='product-model-container-full'>
             <Leva titleBar={{ title: "Light" }} className='leva'/>
             <Canvas>
+                <color attach="background" args={[background]} />
                 <ambientLight intensity={intensity} color={color}/>
                 <pointLight position={[0, 0.8, 1]} intensity={focusLight} />
                 <OrbitControls maxDistance={6.5} minDistance={1.5}/>
@@ -148,7 +150,8 @@ const ProductPage = () => {
                     )
                   }
                 </Suspense>
-                <Environment preset='sunset' />
+                <Environment preset='city' />
+
                 <ContactShadows position={[0, -2.5, 0]}/>
             </Canvas>
           </div>

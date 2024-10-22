@@ -16,6 +16,7 @@
     "@mui/material": "^6.1.3",
     "@react-three/drei": "^9.114.2",
     "@react-three/fiber": "^8.17.9",
+    "@react-three/postprocessing": "^2.16.3",
     "leva": "^0.9.34",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
