@@ -123,12 +123,19 @@
     margin-top: auto
   }
 
+.product-model-container {
   canvas {
     /* height: 70vh !important; */
     height: 50vh !important;
     width: 30vw !important;
     /* width: 70vh !important; */
   }
+}
+
+canvas {
+  height: 10rem !important;
+  width: 15rem !important;
+}
   .reviews-part {
     display: flex;
     flex-direction: column;
@@ -138,6 +145,10 @@
   
   .reviews-header {
     margin-right: auto;
+  }
+
+  .stats {
+    height: 10px !important;
   }
 
   /* Responsive Design */

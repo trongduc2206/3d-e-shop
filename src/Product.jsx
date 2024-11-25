@@ -1,11 +1,11 @@
 import { Suspense, useState } from 'react';
 import './Product.css'; // Make sure this path is correct based on your project structure
 import { Canvas } from '@react-three/fiber'
-import { ContactShadows, Environment, OrbitControls, Stage, AccumulativeShadows, RandomizedLight } from '@react-three/drei'
+import { ContactShadows, Environment, OrbitControls, Stats } from '@react-three/drei'
 import ReviewCard from './ReviewCard';
-import Watch from '../public/models/watch/Watch'
-import Necklace from '../public/models/necklace/Necklace'
-import Ring from '../public/models/ring/Ring'
+import Watch from './components/models/Watch'
+import Necklace from './components/models/Necklace'
+import Ring from './components/models/Ring'
 import Stack from '@mui/material/Stack'
 import Modal from '@mui/material/Modal';
 import IconButton from '@mui/material/IconButton';
@@ -14,6 +14,7 @@ import { Leva, useControls } from "leva";
 import { useParams } from "react-router-dom";
 
 const ProductPage = () => {
+  const environment = import.meta.env.VITE_ENV;
   const { productName } = useParams();
   const products = [
     {
@@ -78,6 +79,10 @@ const ProductPage = () => {
               </Suspense>
               <Environment preset='sunset' />
               <ContactShadows position={[0, -2.5, 0]}/>
+              {
+                environment === 'development' &&
+                <Stats/>
+              }
           </Canvas>
         </div>
         <div className="product-info">
@@ -153,6 +158,7 @@ const ProductPage = () => {
                 <Environment preset='city' />
 
                 <ContactShadows position={[0, -2.5, 0]}/>
+                {/* <Stats className='stats' /> */}
             </Canvas>
           </div>
       </Modal>
