@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import './Header.css';
 
 // Styles
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
@@ -40,6 +41,15 @@ const MenuList = styled(List)(({ theme }) => ({
   padding: 0, // No padding for a cleaner look
   justifyContent: 'flex-start', // Align items to the left
   gap: theme.spacing(1), // Adjust spacing between items
+  [theme.breakpoints.down('md')]: {
+    justifyContent: 'center', // Center items on smaller screens
+    flexDirection: 'column', // Stack items vertically
+    gap: theme.spacing(2), // Increase spacing for better touch targets
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    gap: theme.spacing(1), // Slightly smaller gap for extra small screens
+  },
 }));
 
 const StyledListItem = styled(ListItem)(({ theme }) => ({
@@ -82,7 +92,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Header = () => {
   return (
     <StyledAppBar position="static">
-      <Toolbar>
+      <Toolbar className="toolbar">
         <LogoLink to={paths.home.path}>LuxeGems</LogoLink>
 
         <MenuList>
@@ -97,16 +107,18 @@ const Header = () => {
           </StyledListItem>
         </MenuList>
 
-        <SearchContainer>
-          <StyledInputBase
-            placeholder="Search…"
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </SearchContainer>
-
-        <IconButton>
-          <ShoppingCartIcon />
-        </IconButton>
+        <div style={{display: 'flex'}}>
+          <SearchContainer>
+            <StyledInputBase
+              placeholder="Search…"
+              inputProps={{ 'aria-label': 'search' }}
+            />
+          </SearchContainer>
+          
+          <IconButton>
+            <ShoppingCartIcon />
+          </IconButton>
+        </div>
       </Toolbar>
     </StyledAppBar>
   );

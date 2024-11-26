@@ -161,10 +161,11 @@ canvas {
       padding-right: 0;
       margin-bottom: 20px;
     }
-
+    .product-model-container {
     canvas {
       height: 50vh !important;
       width: 70vw !important;
     }
+  }
   }
   
