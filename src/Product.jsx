@@ -38,7 +38,7 @@ const ProductPage = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const { intensity, color, focusLight, background } = useControls({
+  const { intensity, color, focusLight, background, showBackground, backgroundSelection } = useControls({
     intensity: {
       value: 1,
       min: 0,
@@ -53,7 +53,19 @@ const ProductPage = () => {
       step: 0.05
     },
     background: "#fff",
+    showBackground: false,
+    backgroundSelection: {
+      value: 0,
+      min: 0,
+      max: 9,
+      step: 1
+    }
   });
+
+  const selectBackground = (num) => {
+    const background = ['apartment', 'city', 'dawn', 'forest', 'lobby', 'night', 'park', 'studio', 'sunset', 'warehouse']
+    return background[num];
+  }
 
   return (
     <div className="product-page">
@@ -155,7 +167,7 @@ const ProductPage = () => {
                     )
                   }
                 </Suspense>
-                <Environment preset='city' />
+                <Environment preset={selectBackground(backgroundSelection)} background={showBackground}/>
 
                 <ContactShadows position={[0, -2.5, 0]}/>
                 {/* <Stats className='stats' /> */}
